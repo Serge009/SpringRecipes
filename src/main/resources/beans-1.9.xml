@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <bean id="datePrefixGenerator" class="com.apress.springrecipes.sequence.DatePrefixGenerator">
+        <property name="pattern" value="yyyyMMdd"/>
+    </bean>
+
+    <bean id="sequenceGenerator"
+          class="com.apress.springrecipes.sequence.SequenceGenerator"
+          dependency-check="simple">
+        <property name="initial" value="100000" />
+        <property name="prefixGenerator" ref="datePrefixGenerator" />
+    </bean>
+
+</beans>

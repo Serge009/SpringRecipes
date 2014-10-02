@@ -7,6 +7,8 @@ import java.util.List;
  */
 public class SequenceGenerator {
 
+    private PrefixGenerator prefixGenerator;
+
     private String prefix;
     private String suffix;
     private int initial;
@@ -17,7 +19,11 @@ public class SequenceGenerator {
     public SequenceGenerator() {
     }
 
-    public SequenceGenerator(int initial, String suffix) {
+    public void setPrefixGenerator(PrefixGenerator prefixGenerator) {
+        this.prefixGenerator = prefixGenerator;
+    }
+
+    /* public SequenceGenerator(int initial, String suffix) {
         this.initial = initial;
         this.suffix = suffix;
     }
@@ -36,7 +42,7 @@ public class SequenceGenerator {
         this.prefix = prefix;
         this.suffix = suffix;
         this.initial = initial;
-    }
+    }*/
 
     public void setSuffixes(Object[] suffixes) {
         this.suffixes = suffixes;
@@ -56,13 +62,14 @@ public class SequenceGenerator {
 
     public synchronized String getSequence() {
         StringBuffer buffer = new StringBuffer();
-        buffer.append(prefix);
+        //buffer.append(prefix);
+        buffer.append(prefixGenerator.getPrefix());
         buffer.append(initial + counter++);
         buffer.append(suffix);
-        for (Object o : suffixes) {
+        /*for (Object o : suffixes) {
             buffer.append("-");
             buffer.append(o);
-        }
+        }*/
         return buffer.toString();
     }
 }

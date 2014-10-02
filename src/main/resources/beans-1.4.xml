@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <!--<bean id="sequenceGenerator" class="com.apress.springrecipes.sequence.SequenceGenerator">
+        <constructor-arg value="30"/>
+        <constructor-arg value="A"/>
+        <property name="initial" value="10"/>
+    </bean>-->
+
+    <!--<bean id="sequenceGenerator" class="com.apress.springrecipes.sequence.SequenceGenerator">
+        <constructor-arg value="30"/>
+        <constructor-arg type="int" value="10000"/>
+        <property name="suffix" value="A"/>
+    </bean>-->
+
+    <bean id="sequenceGenerator" class="com.apress.springrecipes.sequence.SequenceGenerator">
+        <constructor-arg type="int" index="0" value="10000"/>
+        <constructor-arg type="java.lang.String" index="1" value="A"/>
+        <property name="prefix" value="30"/>
+    </bean>
+
+</beans>

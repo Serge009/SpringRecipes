@@ -11,10 +11,25 @@ public class SequenceGenerator {
     private String suffix;
     private int initial;
     private int counter;
-    private Object[] suffixes;
+    private Object[] suffixes = new Object[0];
 
 
     public SequenceGenerator() {
+    }
+
+    public SequenceGenerator(int initial, String suffix) {
+        this.initial = initial;
+        this.suffix = suffix;
+    }
+
+    public SequenceGenerator(String prefix, int initial) {
+        this.prefix = prefix;
+        this.initial = initial;
+    }
+
+    public SequenceGenerator(String prefix, String suffix) {
+        this.prefix = prefix;
+        this.suffix = suffix;
     }
 
     public SequenceGenerator(String prefix, String suffix, int initial) {

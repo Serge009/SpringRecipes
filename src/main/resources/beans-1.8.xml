@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <bean id="datePrefixGenerator" class="com.apress.springrecipes.sequence.DatePrefixGenerator">
+        <property name="pattern" value="yyyyMMdd"/>
+    </bean>
+
+
+    <bean id="sequenceGenerator"
+          class="com.apress.springrecipes.sequence.SequenceGenerator">
+        <property name="prefixGenerator" ref="datePrefixGenerator"/>
+        <property name="initial" value="100000"/>
+        <property name="suffixes">
+            <bean class="org.springframework.beans.factory.config.SetFactoryBean">
+                <property name="targetSetClass">
+                    <value>java.util.TreeSet</value>
+                </property>
+                <property name="sourceSet">
+                    <set>
+                        <value>5</value>
+                        <value>10</value>
+                        <value>20</value>
+                    </set>
+                </property>
+            </bean>
+        </property>
+    </bean>
+
+</beans>

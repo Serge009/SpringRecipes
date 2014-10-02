@@ -1,5 +1,6 @@
 package com.apress.springrecipes.sequence;
 
+import java.text.DecimalFormat;
 import java.util.List;
 
 /**
@@ -13,7 +14,7 @@ public class SequenceGenerator {
     private String suffix;
     private int initial;
     private int counter;
-    private Object[] suffixes = new Object[0];
+    private List<Integer> suffixes;
 
 
     public SequenceGenerator() {
@@ -44,7 +45,7 @@ public class SequenceGenerator {
         this.initial = initial;
     }*/
 
-    public void setSuffixes(Object[] suffixes) {
+    public void setSuffixes(List<Integer> suffixes) {
         this.suffixes = suffixes;
     }
 
@@ -65,11 +66,12 @@ public class SequenceGenerator {
         //buffer.append(prefix);
         buffer.append(prefixGenerator.getPrefix());
         buffer.append(initial + counter++);
-        buffer.append(suffix);
-        /*for (Object o : suffixes) {
+        //buffer.append(suffix);
+        DecimalFormat formatter = new DecimalFormat("0000");
+        for (Integer suffix : suffixes) {
             buffer.append("-");
-            buffer.append(o);
-        }*/
+            buffer.append(formatter.format(suffix));
+        }
         return buffer.toString();
     }
 }

@@ -9,9 +9,9 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
 public class Main {
 
     public static void main(String[] args) {
-        ApplicationContext context = new ClassPathXmlApplicationContext("beans-1.3.xml");
+        ApplicationContext context = new ClassPathXmlApplicationContext("beans-1.7.xml");
         Battery aaa = context.getBean("aaa", Battery.class);
-        Disk cdrw = context.getBean("cdrw", Disk.class);
+        Disc cdrw = context.getBean("cdrw", Disc.class);
 
         System.out.println(aaa);
         System.out.println(cdrw);

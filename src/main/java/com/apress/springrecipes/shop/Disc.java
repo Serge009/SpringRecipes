@@ -3,15 +3,15 @@ package com.apress.springrecipes.shop;
 /**
  * Created by SERGE on 02.10.2014.
  */
-public class Disk extends Product {
+public class Disc extends Product {
 
     private int capacity;
 
-    public Disk() {
+    public Disc() {
         super();
     }
 
-    public Disk(String name, double price) {
+    public Disc(String name, double price) {
         super(name, price);
     }
 

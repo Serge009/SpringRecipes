@@ -21,7 +21,7 @@
         <property name="rechargeable" value="true"/>
     </bean>
 
-    <bean id="cdrw" class="com.apress.springrecipes.shop.Disk">
+    <bean id="cdrw" class="com.apress.springrecipes.shop.Disc">
         <constructor-arg name="name" value="CD-RW"/>
         <constructor-arg name="price" value="1.7"/>
         <property name="capacity" value="700"/>

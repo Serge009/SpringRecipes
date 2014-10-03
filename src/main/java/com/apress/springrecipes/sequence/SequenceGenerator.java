@@ -1,6 +1,9 @@
 package com.apress.springrecipes.sequence;
 
+import org.springframework.beans.factory.annotation.Required;
+
 import java.text.DecimalFormat;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -14,12 +17,19 @@ public class SequenceGenerator {
     private String suffix;
     private int initial;
     private int counter;
-    private List<Integer> suffixes;
+    private List<Integer> suffixes = new ArrayList<>();
+
+    {
+        suffixes.add(5);
+        suffixes.add(15);
+        suffixes.add(25);
+    }
 
 
     public SequenceGenerator() {
     }
 
+    @Required
     public void setPrefixGenerator(PrefixGenerator prefixGenerator) {
         this.prefixGenerator = prefixGenerator;
     }
@@ -53,10 +63,12 @@ public class SequenceGenerator {
         this.prefix = prefix;
     }
 
+    @Required
     public void setSuffix(String suffix) {
         this.suffix = suffix;
     }
 
+    @Mandatory
     public void setInitial(int initial) {
         this.initial = initial;
     }

@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+            http://www.springframework.org/schema/beans/spring-beans.xsd
+            http://www.springframework.org/schema/context
+            http://www.springframework.org/schema/context/spring-context.xsd">
+
+    <context:annotation-config />
+
+    <bean id="sequenceGenerator"
+          class="com.apress.springrecipes.sequence.SequenceGenerator">
+        <property name="initial" value="0" />
+        <property name="suffix" value="AC" />
+    </bean>
+    <bean id="datePrefixGenerator"
+          class="com.apress.springrecipes.sequence.DatePrefixGenerator">
+        <property name="pattern" value="yyyyMMdd" />
+    </bean>
+
+    <bean id="yearPrefixGenerator"
+          class="com.apress.springrecipes.sequence.DatePrefixGenerator">
+        <property name="pattern" value="yyyy" />
+    </bean>
+
+    <bean name="num1" class="java.lang.Integer">
+        <constructor-arg value="1"/>
+    </bean>
+
+    <bean name="num2" class="java.lang.Integer">
+        <constructor-arg value="2"/>
+    </bean>
+</beans>

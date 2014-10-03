@@ -1,7 +1,10 @@
 package com.apress.springrecipes.sequence;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Required;
 
+import javax.annotation.Resource;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
@@ -17,19 +20,23 @@ public class SequenceGenerator {
     private String suffix;
     private int initial;
     private int counter;
-    private List<Integer> suffixes = new ArrayList<>();
 
-    {
-        suffixes.add(5);
-        suffixes.add(15);
-        suffixes.add(25);
+    @Autowired
+    private List<Integer> suffixes;
+
+
+
+    public SequenceGenerator() {}
+
+
+    public SequenceGenerator(PrefixGenerator prefixGenerator) {
+        this.prefixGenerator = prefixGenerator;
     }
 
 
-    public SequenceGenerator() {
-    }
-
-    @Required
+   /* @Autowired
+    @Qualifier(value = "yearPrefixGenerator")*/
+    @Resource(name = "yearPrefixGenerator")
     public void setPrefixGenerator(PrefixGenerator prefixGenerator) {
         this.prefixGenerator = prefixGenerator;
     }
@@ -78,8 +85,8 @@ public class SequenceGenerator {
         //buffer.append(prefix);
         buffer.append(prefixGenerator.getPrefix());
         buffer.append(initial + counter++);
-        //buffer.append(suffix);
-        DecimalFormat formatter = new DecimalFormat("0000");
+        buffer.append(suffix);
+        DecimalFormat formatter = new DecimalFormat("0");
         for (Integer suffix : suffixes) {
             buffer.append("-");
             buffer.append(formatter.format(suffix));

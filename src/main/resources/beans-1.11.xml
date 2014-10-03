@@ -18,6 +18,6 @@
 
     <bean id="yearPrefixGenerator"
           class="com.apress.springrecipes.sequence.DatePrefixGenerator">
-        <property name="pattern" value="yyyy" />
+        <property name="pattern" value="yy" />
     </bean>
 </beans>

@@ -8,7 +8,7 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
  */
 public class Main {
     public static void main(String[] args) {
-        ApplicationContext context = new ClassPathXmlApplicationContext("beans-1.12.xml");
+        ApplicationContext context = new ClassPathXmlApplicationContext("1/beans-1.12.xml");
         SequenceGenerator generator = context.getBean("sequenceGenerator", SequenceGenerator.class);
 
         System.out.println(generator.getSequence());

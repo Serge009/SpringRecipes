@@ -1,16 +1,23 @@
 package com.apress.springrecipes.shop;
 
+import java.util.Map;
+
 /**
  * Created by Matrix on 09.10.2014.
  */
 public class ProductCreator {
-    public static Product createProduct(String productId){
-        if("aaa".equals(productId)) {
-            return new Battery("AAA", 2.5);
-        } else if ("cdrw".equals(productId)) {
-            return new Disc("CD-RW", 1.5);
-        }
 
-        throw new IllegalArgumentException("Unknown Product!!!");
+    private Map<String, Product> products;
+
+    public void setProducts(Map<String, Product> products) {
+        this.products = products;
+    }
+
+    public Product createProduct(String productId) {
+        Product product = products.get(productId);
+        if (product != null) {
+            return product;
+        }
+        throw new IllegalArgumentException("Unknown product");
     }
 }

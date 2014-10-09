@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <bean id="productCreator" class="com.apress.springrecipes.shop.ProductCreator">
+        <property name="products">
+            <map>
+                <entry key="aaa">
+                    <bean class="com.apress.springrecipes.shop.Battery">
+                        <property name="name" value="AAA"/>
+                        <property name="price" value="2.5"/>
+                    </bean>
+                </entry>
+                <entry key="cdrw">
+                    <bean class="com.apress.springrecipes.shop.Disc">
+                        <property name="name" value="CDRW"/>
+                        <property name="price" value="1.5"/>
+                    </bean>
+                </entry>
+            </map>
+        </property>
+    </bean>
+
+    <bean id="aaa" factory-bean="productCreator" factory-method="createProduct">
+        <constructor-arg value="aaa"/>
+    </bean>
+
+    <bean id="cdrw" factory-bean="productCreator" factory-method="createProduct">
+        <constructor-arg value="cdrw"/>
+    </bean>
+
+</beans>

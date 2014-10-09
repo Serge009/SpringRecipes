@@ -9,11 +9,14 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
 public class Main {
 
     public static void main(String[] args) {
-        ApplicationContext context = new ClassPathXmlApplicationContext("2/beans-2.3.xml");
-        Battery aaa = context.getBean("aaa", Battery.class);
+        ApplicationContext context = new ClassPathXmlApplicationContext("2/beans-2.4.xml");
+        /*Battery aaa = context.getBean("aaa", Battery.class);
         Disc cdrw = context.getBean("cdrw", Disc.class);
 
         System.out.println(aaa);
-        System.out.println(cdrw);
+        System.out.println(cdrw);*/
+
+        Product bestSeller = (Product) context.getBean("bestSeller");
+        System.out.println(bestSeller);
     }
 }

@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <bean id="aaa" class="com.apress.springrecipes.shop.Battery">
+        <property name="name" value="AAA" />
+        <property name="price" value="2.5" />
+    </bean>
+    <bean id="cdrw" class="com.apress.springrecipes.shop.Disc">
+        <property name="name" value="CD-RW" />
+        <property name="price" value="1.5" />
+    </bean>
+    <bean id="dvdrw" class="com.apress.springrecipes.shop.Disc">
+        <property name="name" value="DVD-RW" />
+        <property name="price" value="3.0" />
+    </bean>
+
+    <bean id="cashier1" class="com.apress.springrecipes.shop.Cashier">
+        <property name="name" value="cashier1" />
+        <property name="path" value="c:/cashier" />
+    </bean>
+
+    <!--<bean id="cashier1" class="com.apress.springrecipes.shop.Cashier" init-method="openFile" destroy-method="closeFile">
+        <property name="name" value="cashier1" />
+        <property name="path" value="c:/cashier" />
+    </bean>-->
+
+</beans>

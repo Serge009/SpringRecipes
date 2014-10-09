@@ -5,6 +5,9 @@ package com.apress.springrecipes.shop;
  */
 public class Product {
 
+    public static final Product AAA = new Battery("AAA", 2.5);
+    public static final Product CDRW = new Disc("CD-RW", 1.5);
+
     private String name;
     private double price;
 

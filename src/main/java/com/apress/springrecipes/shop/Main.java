@@ -9,7 +9,7 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
 public class Main {
 
     public static void main(String[] args) {
-        ApplicationContext context = new ClassPathXmlApplicationContext("2/beans-2.2.xml");
+        ApplicationContext context = new ClassPathXmlApplicationContext("2/beans-2.3.xml");
         Battery aaa = context.getBean("aaa", Battery.class);
         Disc cdrw = context.getBean("cdrw", Disc.class);
 

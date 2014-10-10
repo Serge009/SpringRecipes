@@ -1,5 +1,6 @@
 package com.apress.springrecipes.shop;
 
+import com.apress.springrecipes.javaconfig.Person;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
@@ -11,17 +12,8 @@ import java.io.IOException;
 public class Main {
 
     public static void main(String[] args) throws IOException {
-        ApplicationContext context = new ClassPathXmlApplicationContext("2/beans-2.7.xml");
-        Product aaa = (Product) context.getBean("aaa");
-        Product cdrw = (Product) context.getBean("cdrw");
-        Product dvdrw = (Product) context.getBean("dvdrw");
-        ShoppingCart cart1 = new ShoppingCart();
-        cart1.addItem(aaa);
-        cart1.addItem(cdrw);
-        cart1.addItem(dvdrw);
-        System.out.println("Shopping cart 1 contains " + cart1.getItems());
-
-        Cashier cashier1 = (Cashier) context.getBean("cashier1");
-        cashier1.checkout(cart1);
+        ApplicationContext context = new ClassPathXmlApplicationContext("2/beans-2.8.xml");
+        Person person = context.getBean("theArtistFormerlyKnownAsJosh", Person.class);
+        System.out.println(person);
     }
 }

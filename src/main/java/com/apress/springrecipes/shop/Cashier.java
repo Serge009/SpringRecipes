@@ -12,7 +12,7 @@ import java.util.Date;
 /**
  * Created by Matrix on 09.10.2014.
  */
-public class Cashier implements InitializingBean, DisposableBean, BeanNameAware {
+public class Cashier implements InitializingBean, DisposableBean, BeanNameAware, StorageConfig {
     private String name;
     private String path;
     private BufferedWriter writer;
@@ -56,5 +56,10 @@ public class Cashier implements InitializingBean, DisposableBean, BeanNameAware 
     @Override
     public void setBeanName(String name) {
         this.name = name;
+    }
+
+    @Override
+    public String getPath() {
+        return path;
     }
 }

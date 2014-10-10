@@ -1,5 +1,6 @@
 package com.apress.springrecipes.shop;
 
+import org.springframework.beans.factory.BeanNameAware;
 import org.springframework.beans.factory.DisposableBean;
 import org.springframework.beans.factory.InitializingBean;
 
@@ -11,7 +12,7 @@ import java.util.Date;
 /**
  * Created by Matrix on 09.10.2014.
  */
-public class Cashier implements InitializingBean, DisposableBean {
+public class Cashier implements InitializingBean, DisposableBean, BeanNameAware {
     private String name;
     private String path;
     private BufferedWriter writer;
@@ -50,5 +51,10 @@ public class Cashier implements InitializingBean, DisposableBean {
     @Override
     public void afterPropertiesSet() throws Exception {
         //openFile();
+    }
+
+    @Override
+    public void setBeanName(String name) {
+        this.name = name;
     }
 }

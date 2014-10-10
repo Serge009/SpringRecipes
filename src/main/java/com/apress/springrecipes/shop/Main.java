@@ -12,8 +12,7 @@ import java.io.IOException;
 public class Main {
 
     public static void main(String[] args) throws IOException {
-        ApplicationContext context = new ClassPathXmlApplicationContext("2/beans-2.8.xml");
-        Person person = context.getBean("theArtistFormerlyKnownAsJosh", Person.class);
-        System.out.println(person);
+        ApplicationContext context = new ClassPathXmlApplicationContext("2/beans-2.10.xml");
+
     }
 }

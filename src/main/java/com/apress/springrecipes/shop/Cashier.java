@@ -62,4 +62,12 @@ public class Cashier implements InitializingBean, DisposableBean, BeanNameAware,
     public String getPath() {
         return path;
     }
+
+    @Override
+    public String toString() {
+        return "Cashier{" +
+                "path='" + path + '\'' +
+                ", name='" + name + '\'' +
+                '}';
+    }
 }

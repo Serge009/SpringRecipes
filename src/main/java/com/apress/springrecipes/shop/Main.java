@@ -12,7 +12,7 @@ import java.io.IOException;
 public class Main {
 
     public static void main(String[] args) throws IOException {
-        ApplicationContext context = new ClassPathXmlApplicationContext("2/beans-2.11.xml");
+        ApplicationContext context = new ClassPathXmlApplicationContext("2/beans-2.12.xml");
         Cashier cashier = context.getBean("cashier1", Cashier.class);
 
         System.out.println(cashier);

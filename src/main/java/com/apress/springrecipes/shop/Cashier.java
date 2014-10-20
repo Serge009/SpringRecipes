@@ -3,19 +3,25 @@ package com.apress.springrecipes.shop;
 import org.springframework.beans.factory.BeanNameAware;
 import org.springframework.beans.factory.DisposableBean;
 import org.springframework.beans.factory.InitializingBean;
+import org.springframework.context.MessageSource;
+import org.springframework.context.MessageSourceAware;
 
 import javax.annotation.PostConstruct;
 import javax.annotation.PreDestroy;
 import java.io.*;
 import java.util.Date;
+import java.util.Locale;
 
 /**
  * Created by Matrix on 09.10.2014.
  */
-public class Cashier implements InitializingBean, DisposableBean, BeanNameAware, StorageConfig {
+public class Cashier implements InitializingBean, DisposableBean,
+        BeanNameAware, StorageConfig, MessageSourceAware {
     private String name;
     private String path;
     private BufferedWriter writer;
+    private MessageSource messageSource;
+
     public void setName(String name) {
         this.name = name;
     }
@@ -36,6 +42,10 @@ public class Cashier implements InitializingBean, DisposableBean, BeanNameAware,
         }
         writer.write(new Date() + "\t" + total + "\r\n");
         writer.flush();
+
+        String alert = messageSource.getMessage("alert.checkout",
+                new Object[] { total, new Date() }, Locale.US);
+        System.out.println(alert);
     }
 
     @PreDestroy
@@ -69,5 +79,10 @@ public class Cashier implements InitializingBean, DisposableBean, BeanNameAware,
                 "path='" + path + '\'' +
                 ", name='" + name + '\'' +
                 '}';
+    }
+
+    @Override
+    public void setMessageSource(MessageSource messageSource) {
+        this.messageSource = messageSource;
     }
 }

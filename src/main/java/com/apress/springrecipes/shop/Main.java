@@ -5,6 +5,8 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 import java.io.IOException;
+import java.util.Date;
+import java.util.Locale;
 
 /**
  * Created by SERGE on 02.10.2014.
@@ -12,10 +14,10 @@ import java.io.IOException;
 public class Main {
 
     public static void main(String[] args) throws IOException {
-        ApplicationContext context = new ClassPathXmlApplicationContext("2/beans-2.12.xml");
-        Cashier cashier = context.getBean("cashier1", Cashier.class);
+        ApplicationContext context = new ClassPathXmlApplicationContext("2/beans-2.13.xml");
 
-        System.out.println(cashier);
+        String alert = context.getMessage("alert.checkout", new Object[] { 4, new Date() }, Locale.US);
+        System.out.println(alert);
 
     }
 }

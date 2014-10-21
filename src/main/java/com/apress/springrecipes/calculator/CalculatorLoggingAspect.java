@@ -20,6 +20,22 @@ public class CalculatorLoggingAspect {
         //log.info("{}", "The method add() begins");
     }
 
+    @Before("execution(* *.*(..))")
+    public void logJoinPoint(JoinPoint joinPoint) {
+        log.info("Join point kind : "
+                + joinPoint.getKind());
+        log.info("Signature declaring type : "
+                + joinPoint.getSignature().getDeclaringTypeName());
+        log.info("Signature name : "
+                + joinPoint.getSignature().getName());
+        log.info("Arguments : "
+                + Arrays.toString(joinPoint.getArgs()));
+        log.info("Target class : "
+                + joinPoint.getTarget().getClass().getName());
+        log.info("This class : "
+                + joinPoint.getThis().getClass().getName());
+    }
+
     /*@Before("execution(* *.*(..))")
     public void logBefore(JoinPoint joinPoint) {
         log.info("The method " + joinPoint.getSignature().getName()
@@ -57,7 +73,7 @@ public class CalculatorLoggingAspect {
                 + " in " + joinPoint.getSignature().getName() + "()");
     }*/
 
-    @Around("execution(* *.*(..))")
+   /* @Around("execution(* *.*(..))")
     public Object logAround(ProceedingJoinPoint joinPoint) throws Throwable {
         log.info("The method " + joinPoint.getSignature().getName()
                 + "() begins with " + Arrays.toString(joinPoint.getArgs()));
@@ -72,5 +88,5 @@ public class CalculatorLoggingAspect {
                     + joinPoint.getSignature().getName() + "()");
             throw e;
         }
-    }
+    }*/
 }

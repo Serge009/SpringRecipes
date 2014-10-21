@@ -10,7 +10,14 @@ public class Main {
     public static void main(String[] args) {
         ApplicationContext context =
                 new ClassPathXmlApplicationContext("3/beans-3.1.xml");
+
         ArithmeticCalculator arithmeticCalculator =
+                (ArithmeticCalculator) context.getBean("arithmeticCalculator");
+        MaxCalculator maxCalculator = (MaxCalculator) arithmeticCalculator;
+        maxCalculator.max(1, 2);
+        MinCalculator minCalculator = (MinCalculator) arithmeticCalculator;
+        minCalculator.min(1, 2);
+       /* ArithmeticCalculator arithmeticCalculator =
                 (ArithmeticCalculator) context.getBean("arithmeticCalculator");
         arithmeticCalculator.add(1, 2);
         arithmeticCalculator.sub(4, 3);
@@ -19,6 +26,6 @@ public class Main {
         UnitCalculator unitCalculator =
                 (UnitCalculator) context.getBean("unitCalculator");
         unitCalculator.kilogramToPound(10);
-        unitCalculator.kilometerToMile(5);
+        unitCalculator.kilometerToMile(5);*/
     }
 }

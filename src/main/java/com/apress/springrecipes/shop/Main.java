@@ -14,10 +14,14 @@ import java.util.Locale;
 public class Main {
 
     public static void main(String[] args) throws IOException {
-        ApplicationContext context = new ClassPathXmlApplicationContext("2/beans-2.13.xml");
+        ApplicationContext context =
+                new ClassPathXmlApplicationContext("2/beans-2.15.xml");
 
-        String alert = context.getMessage("alert.checkout", new Object[] { 4, new Date() }, Locale.US);
-        System.out.println(alert);
+        ProductRanking productRanking =
+                (ProductRanking) context.getBean("productRanking");
+        System.out.println(
+                "Product ranking from " + productRanking.getFromDate() +
+                        " to " + productRanking.getToDate());
 
     }
 }

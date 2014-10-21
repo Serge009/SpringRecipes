@@ -24,15 +24,7 @@ public class CheckoutEvent extends ApplicationEvent {
         return amount;
     }
 
-    public void setAmount(double amount) {
-        this.amount = amount;
-    }
-
     public Date getTime() {
         return time;
-    }
-
-    public void setTime(Date time) {
-        this.time = time;
     }
 }

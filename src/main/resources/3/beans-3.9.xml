@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+                           http://www.springframework.org/schema/beans/spring-beans.xsd
+                           http://www.springframework.org/schema/aop
+                           http://www.springframework.org/schema/aop/spring-aop.xsd">
+
+    <bean id="calculatorLoggingAspect" class="com.apress.springrecipes.calculator.CalculatorLoggingAspect"/>
+
+    <bean id="calculatorValidationAspect" class="com.apress.springrecipes.calculator.CalculatorValidationAspect"/>
+
+    <bean id="calculatorIntroduction" class="com.apress.springrecipes.calculator.CalculatorIntroduction" />
+
+    <aop:config>
+        <aop:pointcut id="loggingOperation" expression=
+                "within(com.apress.springrecipes.calculator.ArithmeticCalculator+) ||
+within(com.apress.springrecipes.calculator.UnitCalculator+)"/>
+        <aop:pointcut id="validationOperation" expression=
+                "within(com.apress.springrecipes.calculator.ArithmeticCalculator+) ||
+within(com.apress.springrecipes.calculator.UnitCalculator+)"/>
+        <aop:aspect id="loggingAspect" ref="calculatorLoggingAspect">
+        </aop:aspect>
+        <aop:aspect id="validationAspect" ref="calculatorValidationAspect">
+        </aop:aspect>
+        <aop:aspect id="introduction" ref="calculatorIntroduction">
+        </aop:aspect>
+    </aop:config>
+    <aop:aspect id="loggingAspect" ref="calculatorLoggingAspect">
+        <aop:before pointcut-ref="loggingOperation"
+                    method="logBefore" />
+        <aop:after-returning pointcut-ref="loggingOperation"
+                             returning="result" method="logAfterReturning" />
+        <aop:after-throwing pointcut-ref="loggingOperation"
+                            throwing="e" method="logAfterThrowing" />
+        <aop:around pointcut-ref="loggingOperation"
+                    method="logAround" />
+    </aop:aspect>
+    <aop:aspect id="validationAspect" ref="calculatorValidationAspect">
+        <aop:before pointcut-ref="validationOperation"
+                    method="validateBefore" />
+    </aop:aspect>
+
+
+    <aop:aspect id="introduction" ref="calculatorIntroduction">
+        <aop:declare-parents
+                types-matching=
+                        "com.apress.springrecipes.calculator.ArithmeticCalculatorImpl"
+                implement-interface=
+                        "com.apress.springrecipes.calculator.MaxCalculator"
+                default-impl=
+                        "com.apress.springrecipes.calculator.MaxCalculatorImpl" />
+        <aop:declare-parents
+                types-matching=
+                        "com.apress.springrecipes.calculator.ArithmeticCalculatorImpl"
+                implement-interface=
+                        "com.apress.springrecipes.calculator.MinCalculator"
+                default-impl=
+                        "com.apress.springrecipes.calculator.MinCalculatorImpl" />
+        <aop:declare-parents
+                types-matching=
+                        "com.apress.springrecipes.calculator.*CalculatorImpl"
+                implement-interface=
+                        "com.apress.springrecipes.calculator.Counter"
+                default-impl=
+                        "com.apress.springrecipes.calculator.CounterImpl" />
+        <aop:after pointcut=
+                           "execution(* com.apress.springrecipes.calculator.*Calculator.*(..)) 
+and this(counter)"
+                   method="increaseCount" />
+    </aop:aspect>
+
+</beans>

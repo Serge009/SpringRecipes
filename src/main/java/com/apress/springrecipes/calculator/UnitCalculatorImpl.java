@@ -3,6 +3,8 @@ package com.apress.springrecipes.calculator;
 /**
  * Created by Matrix on 21.10.2014.
  */
+
+@LoggingRequired
 public class UnitCalculatorImpl implements UnitCalculator {
     public double kilogramToPound(double kilogram) {
         double pound = kilogram * 2.2;

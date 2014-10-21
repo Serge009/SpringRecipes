@@ -16,7 +16,8 @@ public class CalculatorValidationAspect {
 
     private static final Logger log = LoggerFactory.getLogger(CalculatorValidationAspect.class);
 
-    @Before("execution(* *.*(double, double))")
+    //@Before("execution(* *.*(double, double))")
+    @Before("@within(LoggingRequired)")
     public void validateBefore(JoinPoint joinPoint){
         log.info("{}", "Validation!");
         for (Object arg : joinPoint.getArgs()) {

@@ -8,6 +8,15 @@ import org.aspectj.lang.annotation.Pointcut;
  */
 @Aspect
 public class CalculatorPointcuts {
-    @Pointcut("execution(* *.*(..))")
-    public void loggingOperation() {}
+    @Pointcut("execution(* *.*(..)) && target(target) && args(a,b)")
+    public void parameterPointcut(Object target, double a, double b) {}
+
+    @Pointcut("within(ArithmeticCalculator+)")
+    public void arithmeticOperation() {    }
+
+    @Pointcut("within(UnitCalculator+)")
+    public void unitOperation() {    }
+
+    @Pointcut("arithmeticOperation() || unitOperation()")
+    public void loggingOperation() {    }
 }

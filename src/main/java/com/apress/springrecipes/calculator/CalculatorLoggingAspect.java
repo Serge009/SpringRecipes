@@ -15,20 +15,30 @@ import java.util.Arrays;
  */
 @Aspect
 @Order(1) //or implements Ordered
-public class CalculatorLoggingAspect{
+public class CalculatorLoggingAspect {
     private static Logger log = LoggerFactory.getLogger(CalculatorLoggingAspect.class);
 
     @Pointcut("execution(* *.*(..))")
-    private void loggingOperation() {}
+    private void loggingOperation() {
+    }
 
-    @Before("execution(* ArithmeticCalculator.add(..))")
-    public void logBefore(){
+    //@Before("execution(* *.*(..)) && target(target) && args(a, b)")
+    @Before("CalculatorPointcuts.parameterPointcut(target, a, b)")
+    public void logParameter(Object target, double a, double b) {
+        log.info("Target class : " + target.getClass().getName());
+        log.info("Arguments : " + a + ", " + b);
+    }
+
+    //@Before("execution(* ArithmeticCalculator.add(..))")
+    public void logBefore() {
         //log.info("{}", "The method add() begins");
     }
 
-    @Before("CalculatorPointcuts.loggingOperation()")
+    //@Before("CalculatorPointcuts.loggingOperation()")
+    @Before("@annotation(LoggingRequired)")
     public void logJoinPoint(JoinPoint joinPoint) {
-        log.info("Join point kind : "
+        log.info("logging aspect");
+        /*log.info("Join point kind : "
                 + joinPoint.getKind());
         log.info("Signature declaring type : "
                 + joinPoint.getSignature().getDeclaringTypeName());
@@ -39,7 +49,7 @@ public class CalculatorLoggingAspect{
         log.info("Target class : "
                 + joinPoint.getTarget().getClass().getName());
         log.info("This class : "
-                + joinPoint.getThis().getClass().getName());
+                + joinPoint.getThis().getClass().getName());*/
     }
 
     /*@Before("execution(* *.*(..))")

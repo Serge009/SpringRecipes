@@ -18,12 +18,15 @@ import java.util.Arrays;
 public class CalculatorLoggingAspect{
     private static Logger log = LoggerFactory.getLogger(CalculatorLoggingAspect.class);
 
+    @Pointcut("execution(* *.*(..))")
+    private void loggingOperation() {}
+
     @Before("execution(* ArithmeticCalculator.add(..))")
     public void logBefore(){
         //log.info("{}", "The method add() begins");
     }
 
-    @Before("execution(* *.*(..))")
+    @Before("CalculatorPointcuts.loggingOperation()")
     public void logJoinPoint(JoinPoint joinPoint) {
         log.info("Join point kind : "
                 + joinPoint.getKind());

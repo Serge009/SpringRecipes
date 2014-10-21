@@ -13,4 +13,6 @@
 
     <bean id="unitCalculator" class="com.apress.springrecipes.calculator.UnitCalculatorImpl"/>
 
+    <bean class="com.apress.springrecipes.calculator.CalculatorLoggingAspect"/>
+
 </beans>

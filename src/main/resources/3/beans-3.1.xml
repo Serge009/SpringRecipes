@@ -15,4 +15,6 @@
 
     <bean class="com.apress.springrecipes.calculator.CalculatorLoggingAspect"/>
 
+    <bean class="com.apress.springrecipes.calculator.CalculatorValidationAspect"/>
+
 </beans>

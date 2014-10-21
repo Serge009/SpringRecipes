@@ -5,6 +5,8 @@ import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.core.Ordered;
+import org.springframework.core.annotation.Order;
 
 import java.util.Arrays;
 
@@ -12,7 +14,8 @@ import java.util.Arrays;
  * Created by Matrix on 21.10.2014.
  */
 @Aspect
-public class CalculatorLoggingAspect {
+@Order(1) //or implements Ordered
+public class CalculatorLoggingAspect{
     private static Logger log = LoggerFactory.getLogger(CalculatorLoggingAspect.class);
 
     @Before("execution(* ArithmeticCalculator.add(..))")

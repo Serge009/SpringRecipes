@@ -140,7 +140,12 @@
             <version>1.0.7</version>
         </dependency>
 
-
+        <!--H2 DB-->
+        <dependency>
+            <groupId>com.h2database</groupId>
+            <artifactId>h2</artifactId>
+            <version>1.4.182</version>
+        </dependency>
 
     </dependencies>
     <build>

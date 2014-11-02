@@ -16,9 +16,13 @@
         <anonymous username="guest" granted-authority="ROLE_GUEST"/>
     </http>
 
+
     <authentication-manager>
         <authentication-provider>
-            <user-service properties="WEB-INF/users.properties" />
+            <jdbc-user-service data-source-ref="dataSource"
+                               users-by-username-query="SELECT username, password, 'true' as enabled FROM users WHERE username = ?"
+                               authorities-by-username-query="SELECT member.username, member_role.role as authorities FROM users member, users_role member_role WHERE member.username = ? AND member.id = member_role.member_id"/>
+            <!--<user-service properties="WEB-INF/users.properties" />-->
         </authentication-provider>
     </authentication-manager>
 </beans:beans>

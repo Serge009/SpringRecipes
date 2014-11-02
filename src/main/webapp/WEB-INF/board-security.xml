@@ -11,7 +11,7 @@
                        access="ROLE_USER,ROLE_ANONYMOUS"/>
         <intercept-url pattern="/messagePost*" access="ROLE_USER"/>
         <intercept-url pattern="/messageDelete*" access="ROLE_ADMIN"/>
-        <http-basic/>
+        <form-login />
     </http>
 
     <authentication-manager>

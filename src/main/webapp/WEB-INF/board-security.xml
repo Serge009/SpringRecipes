@@ -11,7 +11,7 @@
                        access="ROLE_USER,ROLE_ANONYMOUS"/>
         <intercept-url pattern="/messagePost*" access="ROLE_USER"/>
         <intercept-url pattern="/messageDelete*" access="ROLE_ADMIN"/>
-        <form-login />
+        <form-login login-page="/login.jsp" default-target-url="/messageList" authentication-failure-url="/login.jsp?error=true" />
     </http>
 
     <authentication-manager>
